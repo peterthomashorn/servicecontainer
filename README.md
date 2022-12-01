@@ -9,7 +9,7 @@ Basically it boils down to this:
 
 ServiceContainer.shared.register(AccountManager.shared, for: AccountManaging.self)
 
-// Fetch the registered object
+// Fetch the registered object implicitly and lazily through the `@Injected` property wrapper.
 
 class App {
     @Injected var accountManager: AccountManaging?
