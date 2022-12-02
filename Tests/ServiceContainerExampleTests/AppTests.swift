@@ -1,4 +1,5 @@
 @testable import ServiceContainerExample
+import ServiceContainer
 import XCTest
 
 final class AppTests: XCTestCase {
@@ -9,14 +10,24 @@ final class AppTests: XCTestCase {
         super.setUp()
 
         accountManager = AccountManagerMock()
-
         app = App()
-        app.accountManager = accountManager
     }
 
-    // Named this way because: Method 'testRun()' with Objective-C selector 'testRun' conflicts with getter for 'testRun' from superclass 'XCTest' with the same Objective-C selector
-    func testAppRun() {
+    func testRunWithExplicitlyOverriddenService() {
+        app.accountManager = accountManager
         app.run()
+        XCTAssertEqual(accountManager.signInCalls, 1)
+    }
+
+    func testRunWithImplicitlyOverriddenService() {
+        ServiceContainer.shared.register(AccountManagerMock.self, for: AccountManaging.self)
+        app.run()
+
+        guard let accountManager = app.accountManager as? AccountManagerMock else {
+            XCTFail("Expected account manager mock!")
+            return
+        }
+
         XCTAssertEqual(accountManager.signInCalls, 1)
     }
 }

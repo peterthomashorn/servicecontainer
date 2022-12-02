@@ -20,3 +20,10 @@ class App {
 }
 
 ```
+
+The registration enables to set up a service container in unit tests with mocks instead of real implementations only once.
+It should save a lot of boilerplate code compared to explicit dependency injection.
+
+## License
+
+See [LICENSE](LICENSE).
