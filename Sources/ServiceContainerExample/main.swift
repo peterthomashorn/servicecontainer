@@ -5,7 +5,7 @@ import ServiceContainer
 // For every requirement that should be supported by injection an object must be registered.
 // See ServiceContainer for further information.
 
-ServiceContainer.shared.register(AccountManager.shared, for: AccountManaging.self)
+ServiceContainer.shared.register(AccountManager.self, for: AccountManaging.self)
 
 // This is the actual business logic of an app using this service container solution.
 
