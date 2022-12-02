@@ -11,6 +11,7 @@ let package = Package(
     targets: [
         .executableTarget(name: "ServiceContainerExample", dependencies: ["ServiceContainer"]),
         .target(name: "ServiceContainer"),
+        .testTarget(name: "ServiceContainerExampleTests", dependencies: ["ServiceContainerExample"]),
         .testTarget(name: "ServiceContainerTests", dependencies: ["ServiceContainer"]),
     ]
 )
